@@ -1,23 +1,19 @@
 ﻿^y::
+	SetKeyDelay, 100
+	SetMouseDelay, 100
 	Loop {
 		; BESTELLNUMMER KOPIEREN
-		DllCall("SetCursorPos", int, 393, int, 280)				; In den Tab "Einkauf" gehen
+		DllCall("SetCursorPos", int, 350, int, 335)				; In den Tab "Einkauf" gehen
 		MouseClick, left	
-		Sleep 50
 		Send ^a	
-		Sleep 500		
-		DllCall("SetCursorPos", int, 359, int, 520)				; Zur Bestellnummer gehen
+		DllCall("SetCursorPos", int, 350, int, 571)				; Zur Bestellnummer gehen
 		MouseClick, left
-		Sleep 250
 		Send ^c													; Bestellnummer kopieren
-		Sleep 100
 		
 		; WEBSEITE DURCHSUCHEN
 		DllCall("SetCursorPos", int, 1300, int, 250)			; "Suchen"
 		MouseClick, left
-		Sleep 100
 		Send ^a
-		Sleep 100
 		Send ^v
 		Send {ENTER}
 		Sleep 2000												; Warten, bis Webseite geladen hat
@@ -25,37 +21,35 @@
 		; BILD SPEICHERN UND KOPIEREN
 		DllCall("SetCursorPos", int, 1045, int, 579)			; Mauszeiger auf Grafik bewegen
 		MouseClick, right
-		MouseMove, 50, 175, 5, R								; "Grafik speichern"
+		MouseMove, 1, 175, 5, R								; "Grafik speichern"
 		MouseClick, left
-		Sleep 100
 		Send LF
-		Sleep 100
 		StringReplace, clipboard, clipboard, /, , All			; / \ in Windows Dateinamen ist ungültig.
 		StringReplace, clipboard, clipboard, \, , All
-		Sleep 200
 		Send ^v													; Bestellnummer einfügen
 		Send .													; .jpg anhängen
 		Send jpg
-		Sleep 100
 		Send ^a
 		Send ^c													; Bildlink kopieren
-		Sleep 100
 		Send {ENTER}
-		Sleep 1000
 		
 		; BILD EINFÜGEN
-		DllCall("SetCursorPos", int, 355, int, 282)				; Zum "Verkauf 2" Tab gehen
+		DllCall("SetCursorPos", int, 300, int, 333)				; Zum "Verkauf 2" Tab gehen
 		MouseClick, left
 		MouseClick, left
-		Sleep 100
-		DllCall("SetCursorPos", int, 946, int, 389)				; Bilddateinamen einfügen
+		if clipboard contains keine Abbildung
+			Clipboard = -.jpg
+		if Clipboard contains Weitere Informationen				; Man landet direkt auf der Artikelseite
+			Clipboard = TODO.jpg								; Das zweite Script muss benutzt werden
+		if Clipboard contains Landefeld							; Wenn es den Artikel nicht gibt, ein 
+			Clipboard = -.jpg									; "leeres" Bild einfügen 
+																; (damit er zukünftig nicht mehr gesucht wird)
+		DllCall("SetCursorPos", int, 900, int, 435)				; Bilddateinamen einfügen
 		MouseClick, left
 		Send ^v
-		Sleep 100
 		Send {F3}												; Speichern
-		Sleep 200
 		Send !{Right}											; Zum nächsten Artikel gehen
-		Sleep 100
+		Sleep 1000
 	}
 Return
 
