@@ -3,9 +3,8 @@
 		; BESTELLNUMMER KOPIEREN
 		DllCall("SetCursorPos", int, 364, int, 321)				; In den Tab "Einkauf" gehen
 		MouseClick, left								
-		Sleep 50
-		Send ^a		
-		Sleep 500		
+		MouseClick, left	
+		Sleep 100		
 		DllCall("SetCursorPos", int, 359, int, 561)				; Zur Bestellnummer gehen
 		MouseClick, left
 		Send ^c													; Bestellnummer kopieren
@@ -25,10 +24,18 @@
 		MouseMove, 20, 85, 5, R									; "Grafik speichern"
 		MouseClick, left
 		Sleep 100
-		Send Kemmler
+		Send K
+		Send e
+		Send m
+		Send m
+		Send l
+		Send e
+		Send r
 		Send ^v													; Bestellnummer einfügen
 		Send .													; .jpg anhängen
-		Send jpg
+		Send j
+		Send p
+		Send g
 		Sleep 100
 		Send ^a
 		Send ^c													; Bildlink kopieren
@@ -45,11 +52,10 @@
 		MouseClick, left
 		Send ^v
 		Sleep 100
-		Send {F3}
-		Sleep 100
 		Send !{Right}											; Zum nächsten Artikel gehen
+		Send {ENTER}
 		Sleep 100
 	}
 Return
 
-^Esc::ExitApp
+^Esc::Reload

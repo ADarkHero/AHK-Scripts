@@ -19,9 +19,9 @@
 		Sleep 2000												; Warten, bis Webseite geladen hat
 		
 		; BILD SPEICHERN UND KOPIEREN
-		DllCall("SetCursorPos", int, 1045, int, 579)			; Mauszeiger auf Grafik bewegen
+		DllCall("SetCursorPos", int, 1400, int, 673)			; Mauszeiger auf Grafik bewegen
 		MouseClick, right
-		MouseMove, 1, 175, 5, R									; "Grafik speichern"
+		MouseMove, 50, -125, 5, R								; "Grafik speichern"
 		MouseClick, left
 		Send LF
 		StringReplace, clipboard, clipboard, /, , All			; / \ in Windows Dateinamen ist ungültig.
@@ -37,13 +37,6 @@
 		DllCall("SetCursorPos", int, 300, int, 333)				; Zum "Verkauf 2" Tab gehen
 		MouseClick, left
 		MouseClick, left
-		if clipboard contains keine Abbildung
-			Clipboard = -.jpg
-		if Clipboard contains Weitere Informationen				; Man landet direkt auf der Artikelseite
-			Clipboard = TODO.jpg								; Das zweite Script muss benutzt werden
-		if Clipboard contains Landefeld							; Wenn es den Artikel nicht gibt, ein 
-			Clipboard = -.jpg									; "leeres" Bild einfügen 
-																; (damit er zukünftig nicht mehr gesucht wird)
 		DllCall("SetCursorPos", int, 900, int, 435)				; Bilddateinamen einfügen
 		MouseClick, left
 		Send ^v

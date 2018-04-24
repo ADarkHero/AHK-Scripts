@@ -11,7 +11,7 @@
 		Send ^c													; Bestellnummer kopieren
 		
 		; WEBSEITE DURCHSUCHEN
-		DllCall("SetCursorPos", int, 1200, int, 240)			; "Suchen"
+		DllCall("SetCursorPos", int, 1200, int, 240)			; Suchen
 		MouseClick, left
 		Send ^v
 		Send {ENTER}
@@ -20,7 +20,7 @@
 		; BILD SPEICHERN UND KOPIEREN 
 		DllCall("SetCursorPos", int, 1270, int, 615)			; Mauszeiger auf Grafik bewegen
 		MouseClick, right
-		MouseMove, 1, 30, 5, R									; "Grafik speichern"
+		MouseMove, 1, 30, 5, R									; Grafik speichern
 		MouseClick, left
 		Sleep 250
 		Send ^c													; Bildlink kopieren
@@ -46,4 +46,4 @@
 	}
 Return
 
-^Esc::ExitApp
+^Esc::Reload

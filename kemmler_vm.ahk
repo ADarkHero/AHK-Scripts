@@ -52,4 +52,4 @@
 	}
 Return
 
-^Esc::ExitApp
+^Esc::Reload
