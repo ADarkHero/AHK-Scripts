@@ -11,18 +11,25 @@
 		Send ^c													; Bestellnummer kopieren
 		
 		; WEBSEITE DURCHSUCHEN
-		DllCall("SetCursorPos", int, 1069, int, 206)			; "Suchen"
+		DllCall("SetCursorPos", int, 1400, int, 65)				; "Suchen"
 		MouseClick, left
-		Send ^v
+		; Clipboard manipulieren
+		SetKeyDelay, 5
+		Url = www.mercateo.com/mimegallery.jsp?CatalogID=C4054&SKU=
+		Send %Url%
+		Send %clipboard%
+		SetKeyDelay, 100
 		Send {ENTER}
-		Sleep 3000												; Warten, bis Webseite geladen hat
+		Sleep 1000												; Warten, bis Webseite geladen hat
 		
 		; BILD SPEICHERN UND KOPIEREN
-		DllCall("SetCursorPos", int, 1069, int, 206)			; "Bild kopieren"
+		DllCall("SetCursorPos", int, 1300, int, 435)			; "Bild kopieren"
 		MouseClick, right
-		MouseMove, 50, 175, 5, R								; "Grafik speichern"
+		MouseMove, 50, 50, 5, R									; "Grafik speichern"
 		MouseClick, left
+		Sleep 250
 		Send ^v													; Bestellnummer einfügen
+		Clipboard = 											; Clipboard leeren, falls kein Bild gefunden wurde
 		Send .													; .jpg anhängen
 		Send jpg												
 		Send ^a
